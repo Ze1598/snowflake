@@ -2,7 +2,10 @@
 uv init
 
 # Add dependencies (creates/updates pyproject.toml and uv.lock)
-uv add pandas snowflake-connector-python streamlit snowflake-snowpark-python snowflake.core
+uv add llvmlite;
+uv add numba;
+uv add snowflake-ml-python;
+uv add pandas streamlit snowflake-snowpark-python;
 
 # Sync environment (install everything from lock file)
 uv sync
