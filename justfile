@@ -6,7 +6,6 @@ setup-secrets DAY_NUMBER:
 # Create python env
 setup-env DAY_NUMBER:
     #!/usr/bin/env bash
-    set -euo pipefail
     cd day{{DAY_NUMBER}}
     uv init
     uv add llvmlite
@@ -14,6 +13,7 @@ setup-env DAY_NUMBER:
     uv add snowflake-ml-python
     uv add pandas streamlit snowflake-snowpark-python
     uv sync
+    rm README.MD
 
 # Orchestrate local env creation
 create-new DAY_NUMBER:
@@ -24,6 +24,5 @@ create-new DAY_NUMBER:
 # Run the app
 run DAY_NUMBER:
     #!/usr/bin/env bash
-    set -euo pipefail
     cd day{{DAY_NUMBER}}
     uv run streamlit run main.py
