@@ -5,6 +5,9 @@ setup-secrets DAY_NUMBER:
 
 # Create python env
 setup-env DAY_NUMBER:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd day{{DAY_NUMBER}}
     uv init
     uv add llvmlite
     uv add numba
@@ -16,10 +19,11 @@ setup-env DAY_NUMBER:
 create-new DAY_NUMBER:
     mkdir day{{DAY_NUMBER}}
     just setup-secrets {{DAY_NUMBER}}
-    cd day{{DAY_NUMBER}}
-    just setup-env 4
+    just setup-env {{DAY_NUMBER}}
 
 # Run the app
 run DAY_NUMBER:
+    #!/usr/bin/env bash
+    set -euo pipefail
     cd day{{DAY_NUMBER}}
     uv run streamlit run main.py
